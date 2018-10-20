@@ -1,14 +1,22 @@
-th {
-  border: 1px solid black;
-  padding: 3px;
-}
 
 td {
   border: 1px solid black;
   padding: 3px;
 }
+a.waves-effect.waves-light.btn.modal-trigger {
+  margin-top: 25px;
+  margin-left: 10px;
+  font-family: 'Merienda', cursive;
+}
+.modal h2 {
+  font-size: 22px;
+}
 
-a {
-  border: 1px solid black;
-  padding: 3px;
+h1 {
+  font-family: 'Bad Script', cursive;
+}
+
+h2 {
+  font-family: 'Merienda';
+  text-decoration: underline;
 }
