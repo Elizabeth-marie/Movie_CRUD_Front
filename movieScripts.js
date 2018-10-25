@@ -5,9 +5,11 @@ M.AutoInit()
 newMovieSubmit()
 
 //modal for edit initialization
+//heroku Link
+const api = 'https://gentle-lowlands-88725.herokuapp.com/'
 
 //get movies from database
-axios.get('http://localhost:3000/movies')
+axios.get(api + 'movies')
 .then(function(response) {
   // console.log(response)
   //take data from get request and put into appropriate table columns
@@ -81,18 +83,16 @@ axios.get('http://localhost:3000/movies')
       editSubmit.setAttribute('postId', movie.id)
 
       editSubmit.addEventListener('submit', (ev) => {
-          let movieId = ev.target.getAttribute('postId')
-        console.log('submit clicked')
         ev.preventDefault()
+        let movieId = ev.target.getAttribute('postId')
 
-        axios.put(`http://localhost:3000/movies/${movieId}`, {
-
+        axios.put(`${api}movies/${movieId}`, {
         title: etitle.value,
          director: edirector.value,
          year: eyear.value,
          rating: erating.value,
-         poster_url: eposter_url.value
-        })
+         poster_url: `${eposter_url.value}`
+       })
         .then(function(response) {
           console.log(response)
         })
@@ -109,7 +109,7 @@ axios.get('http://localhost:3000/movies')
         let movieId = ev.target.getAttribute('movie-id')
 
         //Delete the movie
-        axios.delete(`http://localhost:3000/movies/${movieId}`)
+        axios.delete(`${api}movies/${movieId}`)
         .then( (response) => {
           console.log(response)
           setTimeout(function(){ev.target.parentElement.parentElement.remove()}, 600)
@@ -120,25 +120,33 @@ axios.get('http://localhost:3000/movies')
       })
   })
 })
-const title = document.getElementById('title')
-const director = document.getElementById('director')
-const year = document.getElementById('year')
-const rating = document.getElementById('rating')
-const poster_url = document.getElementById('poster_url')
+// const title = document.getElementById('title')
+// const director = document.getElementById('director')
+// const year = document.getElementById('year')
+// const rating = document.getElementById('rating')
+// const poster_url = document.getElementById('poster_url')
 
 
 function newMovieSubmit() {
+  const title = document.getElementById('title')
+  const director = document.getElementById('director')
+  const year = document.getElementById('year')
+  const rating = document.getElementById('rating')
+  const poster_url = document.getElementById('poster_url')
   let form = document.getElementById('form')
+
   form.addEventListener('submit', (ev) => {
+    // console.log('event listener working')
     ev.preventDefault()
 
-    axios.post('http://localhost:3000/movies',{
+    axios.post(`${api}movies`,{
       title: title.value,
       director: director.value,
       year: year.value,
       rating: rating.value,
-      poster_url: poster_url.value
+      poster_url: `${poster_url.value}`
     })
+    // console.log(title.value)
     .then(function(response) {
       console.log(response)
     })
